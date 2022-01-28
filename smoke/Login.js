@@ -1,41 +1,53 @@
+const { element, browser, Key } = require("protractor");
+const { protractor } = require("protractor/built/ptor");
+
 let login = function () {
 
     this.userlogin = function () {
-        it('Login', function () {
+
+
+        it('Try to login without email and password', function () {
+            browser.manage().timeouts().implicitlyWait(5000);
+            element(by.xpath("//button[contains(text(),'Sign in')]")).click();
+            browser.sleep(1000);
+            var Errormsg = element(by.xpath("//div[contains(text(),'Email is required')]"));
+            expect(Errormsg.getText()).toEqual("Email is required");  
+
+        });
+
+        it('Try to login without Email', function () {
             
             browser.manage().timeouts().implicitlyWait(5000);
-            element(by.xpath("//a[contains(text(),'Login / Sign up')]")).click();
-            browser.manage().timeouts().implicitlyWait(5000);
-            el = element(by.xpath("//p[contains(text(),'Sign In to your account')]")) 
-            el.getText().then(function(text){expect(text).toContain("Sign In to your account")});
-            element(by.xpath("//input[@id='inputEmail']")).click();
-            element(by.xpath("//input[@id='inputEmail']")).sendKeys("archibo.test1@gmail.com");
-            element(by.xpath("//input[@id='inputPassword']")).click(); 
-            element(by.xpath("//input[@id='inputPassword']")).sendKeys("OnlineService@321");
-            element(by.xpath("//button[contains(text(),'Login')]")).click();
-            browser.sleep(3000)
-            //select-company
-            element(by.xpath('//*[@id="content-wrapper"]/div/main/div[2]/div/div[2]/div/div[2]/div/a/div[2]/div/button')).click();
-            browser.sleep(3000)
-            // element(by.xpath("//header/ul[1]/li[1]/a[1]")).click();
-            // el = element(by.xpath("//header/ul[1]/li[1]/a[1]")) 
-            // el.getText().then(function(text){expect(text).toContain("Archibo IT Consultancy & Services")});
-
-
-
-
-
-           
-
-
-
-
-
-            
-
-
+            element(by.xpath("//input[@id='password']")).click();
+            browser.manage().timeouts().implicitlyWait(1000);
+            var passfield = browser.element(by.xpath("//input[@id='password']"))
+            passfield.click();
+            passfield.sendKeys("Admin@321")
+            browser.manage().timeouts().implicitlyWait(1000);
+            element(by.xpath("//button[contains(text(),'Sign in')]")).click();
+            browser.sleep(1000);
+            var Errormsg = element(by.xpath("//div[contains(text(),'Email is required')]"));
+            expect(Errormsg.getText()).toEqual("Email is required"); 
+            passfield.clear();
            
         });
+
+
+        it('Login Success', function () {
+            browser.manage().timeouts().implicitlyWait(5000);
+            element(by.xpath("//input[@id='email']")).click();
+            browser.manage().timeouts().implicitlyWait(1000);
+            element(by.xpath("//input[@id='email']")).sendKeys("Jihan@skipperhospitality.com");
+            browser.manage().timeouts().implicitlyWait(1000);
+            element(by.xpath("//button[contains(text(),'Sign in')]")).click();
+            browser.manage().timeouts().implicitlyWait(35000);
+            var DashboadVerification = element(by.xpath("//span[contains(text(),'Dashboard')]"));
+            expect(DashboadVerification.getText()).toEqual("Dashboard"); 
+           
+        });
+
+        
+
 
     };
 };

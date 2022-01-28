@@ -17,7 +17,7 @@ function removeAllureResult(dirPath) {
 
 exports.config = {
   directConnect: true,
-  // seleniumAddress: 'http://localhost:4444/wd/hub',
+  //seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ['spec.js'],
 
   //chrome_incognito
@@ -30,9 +30,9 @@ exports.config = {
     count: '1',
     chromeOptions: {
       args: [
-        "--window-size=1366,768",
-        "--headless",
-        "--no-sandbox",
+        //"--window-size=1366,768",
+        //"--headless",
+        //"--no-sandbox",
         // "--disable-infobars", // https://stackoverflow.com/a/43840128/1689770
         // "--disable-dev-shm-usage", // https://stackoverflow.com/a/50725918/1689770
         // "--disable-browser-side-navigation", // https://stackoverflow.com/a/49123152/1689770
@@ -57,7 +57,8 @@ exports.config = {
 
   onPrepare: function () {
 
-    // removeAllureResult('./allure-results');
+     removeAllureResult('./allure-results');
+     
 
     // VideoReporter.prototype.jasmineStarted = function() {
     //   var self = this;

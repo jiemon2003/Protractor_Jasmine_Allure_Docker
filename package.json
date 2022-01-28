@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "install": "^0.13.0",
+    "jasmine-allure-reporter": "^1.0.2",
+    "package": "^1.0.1"
+  }
+}
